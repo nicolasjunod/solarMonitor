@@ -43,7 +43,7 @@ void takeMes()
 
 	HAL_UART_Transmit(&huart1, &uartBuffer[0], 3, 500);
 
-	test();
+	//flash_readID(&uartBuffer[0]);
 
 	i++;
 	if(i==nbData)

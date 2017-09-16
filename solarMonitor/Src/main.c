@@ -33,6 +33,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32l0xx_hal.h"
+#include "flash.h"
 
 /* USER CODE BEGIN Includes */
 
@@ -75,6 +76,7 @@ static void MX_SPI1_Init(void);
 /* USER CODE BEGIN 0 */
 
 static uint32_t adcPeriod;
+uint8_t flashID[3];
 
 /* USER CODE END 0 */
 
@@ -106,6 +108,8 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
   initTables();
+  flash_initGPIO();
+  flash_readID(&flashID[0]);
 
   HAL_LPTIM_Counter_Start_IT(&hlptim1, adcPeriod*32768);
 
