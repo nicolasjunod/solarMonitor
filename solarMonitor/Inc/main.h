@@ -67,6 +67,12 @@
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
 #define TCK_GPIO_Port GPIOA
+#define flash_CE_Pin GPIO_PIN_10
+#define flash_CE_GPIO_Port GPIOC
+#define flash_WP_Pin GPIO_PIN_11
+#define flash_WP_GPIO_Port GPIOC
+#define flash_HOLD_Pin GPIO_PIN_12
+#define flash_HOLD_GPIO_Port GPIOC
 #define display_D5_Pin GPIO_PIN_6
 #define display_D5_GPIO_Port GPIOB
 

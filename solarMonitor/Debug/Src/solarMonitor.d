@@ -34,7 +34,8 @@ Src/solarMonitor.o: ../Src/solarMonitor.c \
  C:/Users/Nicolas/Documents/Projets/panneau\ solaire/st/solarMonitor/solarMonitor/Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rtc_ex.h \
  C:/Users/Nicolas/Documents/Projets/panneau\ solaire/st/solarMonitor/solarMonitor/Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_spi.h \
  C:/Users/Nicolas/Documents/Projets/panneau\ solaire/st/solarMonitor/solarMonitor/Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart.h \
- C:/Users/Nicolas/Documents/Projets/panneau\ solaire/st/solarMonitor/solarMonitor/Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart_ex.h
+ C:/Users/Nicolas/Documents/Projets/panneau\ solaire/st/solarMonitor/solarMonitor/Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart_ex.h \
+ C:/Users/Nicolas/Documents/Projets/panneau\ solaire/st/solarMonitor/solarMonitor/Inc/flash.h
 
 C:/Users/Nicolas/Documents/Projets/panneau\ solaire/st/solarMonitor/solarMonitor/Inc/solarMonitor.h:
 
@@ -107,3 +108,5 @@ C:/Users/Nicolas/Documents/Projets/panneau\ solaire/st/solarMonitor/solarMonitor
 C:/Users/Nicolas/Documents/Projets/panneau\ solaire/st/solarMonitor/solarMonitor/Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart.h:
 
 C:/Users/Nicolas/Documents/Projets/panneau\ solaire/st/solarMonitor/solarMonitor/Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart_ex.h:
+
+C:/Users/Nicolas/Documents/Projets/panneau\ solaire/st/solarMonitor/solarMonitor/Inc/flash.h:

@@ -1,10 +1,10 @@
-12:15:36 **** Incremental Build of configuration Debug for project solarMonitor ****
+14:27:43 **** Incremental Build of configuration Debug for project solarMonitor ****
 make all 
-Building file: ../Src/stm32l0xx_it.c
+Building file: ../Src/flash.c
 Invoking: MCU GCC Compiler
 %cd%
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -mfloat-abi=soft '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32L053xx -I"C:/Users/Nicolas/Documents/Projets/panneau solaire/st/solarMonitor/solarMonitor/Inc" -I"C:/Users/Nicolas/Documents/Projets/panneau solaire/st/solarMonitor/solarMonitor/Drivers/STM32L0xx_HAL_Driver/Inc" -I"C:/Users/Nicolas/Documents/Projets/panneau solaire/st/solarMonitor/solarMonitor/Drivers/STM32L0xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Nicolas/Documents/Projets/panneau solaire/st/solarMonitor/solarMonitor/Drivers/CMSIS/Device/ST/STM32L0xx/Include" -I"C:/Users/Nicolas/Documents/Projets/panneau solaire/st/solarMonitor/solarMonitor/Drivers/CMSIS/Include" -I"C:/Users/Nicolas/Documents/Projets/panneau solaire/st/solarMonitor/solarMonitor/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/stm32l0xx_it.d" -MT"Src/stm32l0xx_it.o" -o "Src/stm32l0xx_it.o" "../Src/stm32l0xx_it.c"
-Finished building: ../Src/stm32l0xx_it.c
+arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -mfloat-abi=soft '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32L053xx -I"C:/Users/Nicolas/Documents/Projets/panneau solaire/st/solarMonitor/solarMonitor/Inc" -I"C:/Users/Nicolas/Documents/Projets/panneau solaire/st/solarMonitor/solarMonitor/Drivers/STM32L0xx_HAL_Driver/Inc" -I"C:/Users/Nicolas/Documents/Projets/panneau solaire/st/solarMonitor/solarMonitor/Drivers/STM32L0xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Nicolas/Documents/Projets/panneau solaire/st/solarMonitor/solarMonitor/Drivers/CMSIS/Device/ST/STM32L0xx/Include" -I"C:/Users/Nicolas/Documents/Projets/panneau solaire/st/solarMonitor/solarMonitor/Drivers/CMSIS/Include" -I"C:/Users/Nicolas/Documents/Projets/panneau solaire/st/solarMonitor/solarMonitor/Inc"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/flash.d" -MT"Src/flash.o" -o "Src/flash.o" "../Src/flash.c"
+Finished building: ../Src/flash.c
  
 Building target: solarMonitor.elf
 Invoking: MCU GCC Linker
@@ -16,8 +16,8 @@ Generating binary and Printing size information:
 arm-none-eabi-objcopy -O binary "solarMonitor.elf" "solarMonitor.bin"
 arm-none-eabi-size "solarMonitor.elf"
    text	   data	    bss	    dec	    hex	filename
-  13052	     12	   6532	  19596	   4c8c	solarMonitor.elf
+  15424	     12	   5532	  20968	   51e8	solarMonitor.elf
  
 
-12:15:38 Build Finished (took 2s.216ms)
+14:27:45 Build Finished (took 2s.260ms)
 

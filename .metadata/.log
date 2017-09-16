@@ -7406,3 +7406,33 @@ Caused by: java.net.BindException: Address already in use: JVM_Bind
 
 !ENTRY fr.ac6.mcu.ide 1 1 2017-09-16 11:47:37.734
 !MESSAGE Started RMI Server, listening on port 21113
+!SESSION 2017-09-16 13:01:56.708 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_CH
+Framework arguments:  -pluginCustomization configuration/st_pref.ini -product org.eclipse.epp.package.cpp.product C:\Users\Nicolas\Documents\Projets\panneau solaire\st\solarMonitor\solarMonitor\.cproject
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -pluginCustomization configuration/st_pref.ini -product org.eclipse.epp.package.cpp.product C:\Users\Nicolas\Documents\Projets\panneau solaire\st\solarMonitor\solarMonitor\.cproject
+
+!ENTRY fr.ac6.mcu.ide 1 1 2017-09-16 13:32:48.753
+!MESSAGE Started RMI Server, listening on port 21112
+!SESSION 2017-09-16 14:11:59.683 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_CH
+Framework arguments:  -pluginCustomization configuration/st_pref.ini -product org.eclipse.epp.package.cpp.product C:\Users\Nicolas\Documents\Projets\panneau solaire\st\solarMonitor\solarMonitor\.cproject
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -pluginCustomization configuration/st_pref.ini -product org.eclipse.epp.package.cpp.product C:\Users\Nicolas\Documents\Projets\panneau solaire\st\solarMonitor\solarMonitor\.cproject
+
+!ENTRY fr.ac6.mcu.ide 1 1 2017-09-16 14:12:14.560
+!MESSAGE Started RMI Server, listening on port 21112
+!SESSION 2017-09-16 14:18:36.983 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_CH
+Framework arguments:  -pluginCustomization configuration/st_pref.ini -product org.eclipse.epp.package.cpp.product C:\Users\Nicolas\Documents\Projets\panneau solaire\st\solarMonitor\solarMonitor\.cproject
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -pluginCustomization configuration/st_pref.ini -product org.eclipse.epp.package.cpp.product C:\Users\Nicolas\Documents\Projets\panneau solaire\st\solarMonitor\solarMonitor\.cproject
+
+!ENTRY fr.ac6.mcu.ide 1 1 2017-09-16 14:18:51.510
+!MESSAGE Started RMI Server, listening on port 21112

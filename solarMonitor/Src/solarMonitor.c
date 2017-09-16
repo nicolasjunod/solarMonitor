@@ -8,15 +8,16 @@
 #include "solarMonitor.h"
 #include "main.h"
 #include "stm32l0xx_hal.h"
+#include "flash.h"
 
 extern ADC_HandleTypeDef hadc;
-extern DMA_HandleTypeDef hdma_adc;
+//extern DMA_HandleTypeDef hdma_adc;
 
-extern LPTIM_HandleTypeDef hlptim1;
+//extern LPTIM_HandleTypeDef hlptim1;
 
-extern RTC_HandleTypeDef hrtc;
+//extern RTC_HandleTypeDef hrtc;
 
-extern SPI_HandleTypeDef hspi1;
+//extern SPI_HandleTypeDef hspi1;
 
 extern UART_HandleTypeDef huart1;
 
@@ -25,30 +26,24 @@ uint32_t adcTable [100];
 uint8_t voltage1 [nbData];
 uint8_t voltage2 [nbData];
 uint8_t voltage3 [nbData];
-uint32_t adcChannel1;
 uint8_t uartBuffer[10];
-uint8_t storedData[nbData];
+
 static uint32_t i;
 
 void takeMes()
 {
-	//static uint32_t i=0;
 	HAL_ADC_Start_DMA(&hadc, &adcTable[0], 3);
-	// adcChannel1=adcTable[0];
 	voltage1[i] = adcTable[0]>>4;
 	voltage2[i] = adcTable[1]>>4;
 	voltage3[i] = adcTable[2]>>4;
 
-//	HAL_Delay(1000);
-	//
-	//  uartBuffer[0]=(adcTable[0]>>4);
-
-	//  storedData[i]=(uint8_t)((adcTable[0]>>4));
 	uartBuffer[0] = voltage1[i];
 	uartBuffer[1] = voltage2[i];
 	uartBuffer[2] = voltage3[i];
 
 	HAL_UART_Transmit(&huart1, &uartBuffer[0], 3, 500);
+
+	test();
 
 	i++;
 	if(i==nbData)
@@ -58,6 +53,10 @@ void takeMes()
 void initTables()
 {
 	for(i=0 ; i< nbData ; i++)
-		storedData[i]=0;
+	{
+		voltage1[i]=0;
+		voltage2[i]=0;
+		voltage3[i]=0;
+	}
 	i=0;
 }

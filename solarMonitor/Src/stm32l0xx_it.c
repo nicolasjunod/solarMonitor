@@ -109,6 +109,7 @@ void LPTIM1_IRQHandler(void)
   /* USER CODE BEGIN LPTIM1_IRQn 0 */
 	HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
 	takeMes();
+//	test();
   /* USER CODE END LPTIM1_IRQn 0 */
   HAL_LPTIM_IRQHandler(&hlptim1);
   /* USER CODE BEGIN LPTIM1_IRQn 1 */
