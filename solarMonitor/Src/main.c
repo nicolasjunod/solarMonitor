@@ -33,10 +33,11 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32l0xx_hal.h"
-#include "flash.h"
+
 
 /* USER CODE BEGIN Includes */
-
+#include "flash.h"
+#include "solarMonitor.h"
 
 /* USER CODE END Includes */
 
@@ -77,6 +78,10 @@ static void MX_SPI1_Init(void);
 
 static uint32_t adcPeriod;
 uint8_t flashID[3];
+uint32_t i, j;
+uint32_t result;
+uint8_t flashData[100];
+uint8_t dataToWrite[100];
 
 /* USER CODE END 0 */
 
@@ -110,6 +115,28 @@ int main(void)
   initTables();
   flash_initGPIO();
   flash_readID(&flashID[0]);
+ // flash_readStatus(&flashID[0]);
+//  flash_readConfig(&flashID[0]);
+
+//  flash_writeEnable();
+//  flash_chipErase();
+
+  result=0;
+  for(i=0 ; i<100 ; i++)
+  {
+	  dataToWrite[i]=100+i;
+	  flash_readMemory(0x10000+i, 1, &flashData[i]);
+  }
+
+  flash_globalBlockProtectionUnlock();
+
+ // flash_writeEnable();
+//  flash_erase4KB(0x10000);
+
+  flash_writeEnable();
+  flash_pageProgram(0x00000, 100, &dataToWrite[0]);
+
+  flash_readMemory(0x00000, 100, &flashData[0]);
 
   HAL_LPTIM_Counter_Start_IT(&hlptim1, adcPeriod*32768);
 
