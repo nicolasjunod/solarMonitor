@@ -34,10 +34,10 @@
 #include "main.h"
 #include "stm32l0xx_hal.h"
 
-
 /* USER CODE BEGIN Includes */
 #include "flash.h"
 #include "solarMonitor.h"
+#include "uart.h"
 
 /* USER CODE END Includes */
 
@@ -83,6 +83,7 @@ uint32_t result;
 uint8_t flashData[100];
 uint8_t dataToWrite[100];
 
+
 /* USER CODE END 0 */
 
 int main(void)
@@ -120,7 +121,7 @@ int main(void)
 
 //  flash_writeEnable();
 //  flash_chipErase();
-
+/*
   result=0;
   for(i=0 ; i<100 ; i++)
   {
@@ -136,9 +137,12 @@ int main(void)
   flash_writeEnable();
   flash_pageProgram(0x00000, 100, &dataToWrite[0]);
 
-  flash_readMemory(0x00000, 100, &flashData[0]);
+  flash_readMemory(0x00000, 100, &flashData[0]);*/
 
-  HAL_LPTIM_Counter_Start_IT(&hlptim1, adcPeriod*32768);
+
+  enableUartInterrupt();
+
+//  HAL_LPTIM_Counter_Start_IT(&hlptim1, adcPeriod*32768);
 
   /* USER CODE END 2 */
 
@@ -397,8 +401,9 @@ static void MX_USART1_UART_Init(void)
   huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
   huart1.Init.OverSampling = UART_OVERSAMPLING_16;
   huart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
-  huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_TXINVERT_INIT;
+  huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_TXINVERT_INIT|UART_ADVFEATURE_RXINVERT_INIT;
   huart1.AdvancedInit.TxPinLevelInvert = UART_ADVFEATURE_TXINV_ENABLE;
+  huart1.AdvancedInit.RxPinLevelInvert = UART_ADVFEATURE_RXINV_ENABLE;
   if (HAL_UART_Init(&huart1) != HAL_OK)
   {
     Error_Handler();

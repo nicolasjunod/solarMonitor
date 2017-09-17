@@ -9,7 +9,8 @@ C_SRCS += \
 ../Src/solarMonitor.c \
 ../Src/stm32l0xx_hal_msp.c \
 ../Src/stm32l0xx_it.c \
-../Src/system_stm32l0xx.c 
+../Src/system_stm32l0xx.c \
+../Src/uart.c 
 
 OBJS += \
 ./Src/flash.o \
@@ -17,7 +18,8 @@ OBJS += \
 ./Src/solarMonitor.o \
 ./Src/stm32l0xx_hal_msp.o \
 ./Src/stm32l0xx_it.o \
-./Src/system_stm32l0xx.o 
+./Src/system_stm32l0xx.o \
+./Src/uart.o 
 
 C_DEPS += \
 ./Src/flash.d \
@@ -25,7 +27,8 @@ C_DEPS += \
 ./Src/solarMonitor.d \
 ./Src/stm32l0xx_hal_msp.d \
 ./Src/stm32l0xx_it.d \
-./Src/system_stm32l0xx.d 
+./Src/system_stm32l0xx.d \
+./Src/uart.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

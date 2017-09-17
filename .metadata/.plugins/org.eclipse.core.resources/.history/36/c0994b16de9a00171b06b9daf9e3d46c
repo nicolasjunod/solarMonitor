@@ -1,0 +1,45 @@
+/*
+ * flash.c
+ *
+ *  Created on: 16 sept. 2017
+ *      Author: Nicolas
+ */
+
+#include "flash.h"
+
+
+extern SPI_HandleTypeDef hspi1;
+//uint16_t dataSend[10];
+//uint16_t dataReceive[10];
+uint8_t dataSend[10];
+uint8_t dataReceive[10];
+
+void flash_initGPIO()
+{
+	HAL_GPIO_WritePin(flash_CE_Port, flash_CE_Pin, 1);
+	HAL_GPIO_WritePin(flash_WP_Port, flash_WP_Pin, 0);
+	HAL_GPIO_WritePin(flash_HOLD_Port, flash_HOLD_Pin, 1);
+}
+
+void flash_readID(uint8_t* flashID)
+{
+//	HAL_GPIO_WritePin(flash_CE_Port, flash_CE_Pin, 1);
+	HAL_GPIO_WritePin(flash_WP_Port, flash_WP_Pin, 0);
+	HAL_GPIO_WritePin(flash_HOLD_Port, flash_HOLD_Pin, 1);
+
+	//HAL_Delay(10);
+
+	dataSend[0] = 0x9F;
+
+	HAL_GPIO_WritePin(flash_CE_Port, flash_CE_Pin, 0);
+	//HAL_Delay(1);
+	HAL_SPI_Transmit(&hspi1, &dataSend[0], 1, 10);
+	//HAL_SPI_Receive(&hspi1, &dataReceive[0], 3, 10);
+	HAL_SPI_Receive(&hspi1, flashID, 3, 10);
+
+	HAL_GPIO_WritePin(flash_CE_Port, flash_CE_Pin, 1);
+
+
+
+}
+

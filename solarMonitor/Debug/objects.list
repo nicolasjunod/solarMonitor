@@ -27,4 +27,5 @@
 "Src/stm32l0xx_hal_msp.o"
 "Src/stm32l0xx_it.o"
 "Src/system_stm32l0xx.o"
+"Src/uart.o"
 "startup/startup_stm32l053xx.o"

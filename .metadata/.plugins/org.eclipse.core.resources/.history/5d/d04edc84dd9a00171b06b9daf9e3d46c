@@ -1,0 +1,18 @@
+/*
+ * flash.h
+ *
+ *  Created on: 16 sept. 2017
+ *      Author: Nicolas
+ */
+
+#ifndef FLASH_H_
+#define FLASH_H_
+
+#define flash_CE_Port 	GPIOC
+#define flash_WP_Port	GPIOC
+#define flash_HOLD_Port	GPIOC
+
+void flash_readID(uint8_t* flashID);
+void flash_initGPIO(void);
+
+#endif /* FLASH_H_ */

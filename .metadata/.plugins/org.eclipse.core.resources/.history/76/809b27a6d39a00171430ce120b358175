@@ -1,0 +1,16 @@
+/*
+ * flash.c
+ *
+ *  Created on: 16 sept. 2017
+ *      Author: Nicolas
+ */
+
+#include "flash.h"
+#include "main.h"
+
+
+void test()
+{
+	HAL_GPIO_WritePin(GPIOC, flash_CE_Pin, 1);
+	HAL_GPIO_WritePin(GPIOC, flash_CE_Pin, 0);
+}

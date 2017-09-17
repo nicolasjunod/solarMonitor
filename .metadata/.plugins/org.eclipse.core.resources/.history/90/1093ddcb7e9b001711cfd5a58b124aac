@@ -1,0 +1,212 @@
+/*
+ * flash.c
+ *
+ *  Created on: 16 sept. 2017
+ *      Author: Nicolas
+ */
+
+#include "flash.h"
+
+
+extern SPI_HandleTypeDef hspi1;
+
+void flash_initGPIO()
+{
+	HAL_GPIO_WritePin(flash_CE_Port, flash_CE_Pin, 1);
+	HAL_GPIO_WritePin(flash_WP_Port, flash_WP_Pin, 0);
+	HAL_GPIO_WritePin(flash_HOLD_Port, flash_HOLD_Pin, 1);
+}
+
+void flash_readID(uint8_t* flashID)
+{
+	uint8_t dataSend;
+
+	dataSend = 0x9F;
+
+	flash_CE_low();
+	HAL_SPI_Transmit(&hspi1, &dataSend, 1, flash_timeout);
+	HAL_SPI_Receive(&hspi1, flashID, 3, flash_timeout);
+	flash_CE_high();
+}
+
+void flash_readStatus(uint8_t* flashStatus)
+{
+	uint8_t dataSend;
+
+	dataSend = 0x05;
+
+	flash_CE_low();
+	HAL_SPI_Transmit(&hspi1, &dataSend, 1, flash_timeout);
+	HAL_SPI_Receive(&hspi1, flashStatus, 1, flash_timeout);
+	flash_CE_high();
+}
+
+void flash_readConfig(uint8_t* flashConfig)
+{
+	uint8_t dataSend;
+
+	dataSend = 0x35;
+
+	flash_CE_low();
+	HAL_SPI_Transmit(&hspi1, &dataSend, 1, flash_timeout);
+	HAL_SPI_Receive(&hspi1, flashConfig, 1, flash_timeout);
+	flash_CE_high();
+}
+
+void flash_readMemory(uint32_t address, uint32_t size, uint8_t* flashData)
+{
+	uint8_t dataSend;
+	uint8_t addressTable[3];
+	uint32_t i;
+
+	dataSend = 0x03;
+	addressTable[0] = (address & 0xFF0000)>>16;	//MSB
+	addressTable[1] = (address & 0x00FF00)>>8;
+	addressTable[2] = (address & 0x0000FF);		//LSB
+
+	flash_CE_low();
+	HAL_SPI_Transmit(&hspi1, &dataSend, 1, flash_timeout);
+	HAL_SPI_Transmit(&hspi1, &addressTable[0], 3, flash_timeout);
+	for(i=0 ; i< size ; i++)
+		HAL_SPI_Receive(&hspi1, &flashData[i], 1, flash_timeout);
+
+
+	flash_CE_high();
+}
+
+void flash_writeEnable(void)
+{
+	uint8_t dataSend;
+
+	dataSend = 0x06;
+
+	flash_CE_low();
+	HAL_SPI_Transmit(&hspi1, &dataSend, 1, flash_timeout);
+
+	flash_CE_high();
+}
+
+void flash_writeDisable(void)
+{
+	uint8_t dataSend;
+
+	dataSend = 0x04;
+
+	flash_CE_low();
+	HAL_SPI_Transmit(&hspi1, &dataSend, 1, flash_timeout);
+
+	flash_CE_high();
+}
+
+void flash_erase4KB(uint32_t address)
+{
+	uint8_t dataSend;
+	uint8_t addressTable[3];
+
+	dataSend = 0x20;
+
+	addressTable[0] = (address & 0xFF0000)>>16;	//MSB
+	addressTable[1] = (address & 0x00FF00)>>8;
+	addressTable[2] = (address & 0x0000FF);		//LSB
+
+	flash_CE_low();
+	HAL_SPI_Transmit(&hspi1, &dataSend, 1, flash_timeout);
+	HAL_SPI_Transmit(&hspi1, &addressTable[0], 3, flash_timeout);
+
+	flash_CE_high();
+}
+
+void flash_pageProgram(uint32_t address, uint32_t size, uint8_t* flashData)
+{
+	uint8_t dataSend;
+	uint8_t addressTable[3];
+	uint32_t i;
+
+	dataSend = 0x02;
+	addressTable[0] = (address & 0xFF0000)>>16;	//MSB
+	addressTable[1] = (address & 0x00FF00)>>8;
+	addressTable[2] = (address & 0x0000FF);		//LSB
+
+	flash_CE_low();
+	HAL_SPI_Transmit(&hspi1, &dataSend, 1, flash_timeout);
+	HAL_SPI_Transmit(&hspi1, &addressTable[0], 3, flash_timeout);
+	for(i=0 ; i< size ; i++)
+		HAL_SPI_Transmit(&hspi1, &flashData[i], 1, flash_timeout);
+
+
+	flash_CE_high();
+}
+
+void flash_readBlockProtection(uint8_t* flash_BlockProtect)
+{
+	uint8_t dataSend;
+
+	dataSend = 0x72;
+
+	flash_CE_low();
+	HAL_SPI_Transmit(&hspi1, &dataSend, 1, flash_timeout);
+	HAL_SPI_Receive(&hspi1, &flash_BlockProtect[0], 10, flash_timeout);
+	flash_CE_high();
+}
+
+void flash_writeBlockProtection(void)
+{
+	uint8_t dataSend;
+
+	dataSend = 0x42;
+
+	flash_CE_low();
+
+	HAL_SPI_Transmit(&hspi1, &dataSend, 1, flash_timeout);
+
+	flash_CE_high();
+}
+
+void flash_globalBlockProtectionUnlock(void)
+{
+	uint8_t dataSend;
+
+	dataSend = 0x98;
+
+	flash_CE_low();
+
+	HAL_SPI_Transmit(&hspi1, &dataSend, 1, flash_timeout);
+
+	flash_CE_high();
+}
+
+
+void flash_waitBusy(void)
+{
+	uint8_t flashStatus;
+	uint32_t waitCounter;
+
+	waitCounter = 0;
+
+	do
+	{
+		flash_readStatus(&flashStatus);
+		waitCounter++;
+	}
+	while((flashStatus & 0x80) !=0);
+}
+
+void flash_dummyPeriod(uint32_t nbPeriods)
+{
+	uint32_t i;
+	uint8_t dataSend;
+	dataSend = 0;
+
+	for(i=0 ; i<nbPeriods ; i++)
+		HAL_SPI_Transmit(&hspi1, &dataSend, 1, flash_timeout);
+}
+
+void flash_CE_low(void)
+{
+	HAL_GPIO_WritePin(flash_CE_Port, flash_CE_Pin, 0);
+}
+
+void flash_CE_high(void)
+{
+	HAL_GPIO_WritePin(flash_CE_Port, flash_CE_Pin, 1);
+}

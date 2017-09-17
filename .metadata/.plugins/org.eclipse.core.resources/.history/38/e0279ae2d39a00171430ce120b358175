@@ -1,0 +1,13 @@
+/*
+ * flash.h
+ *
+ *  Created on: 16 sept. 2017
+ *      Author: Nicolas
+ */
+
+#ifndef FLASH_H_
+#define FLASH_H_
+
+void test(void);
+
+#endif /* FLASH_H_ */

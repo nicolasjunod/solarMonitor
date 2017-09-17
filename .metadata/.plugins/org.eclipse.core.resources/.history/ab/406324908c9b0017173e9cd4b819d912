@@ -1,0 +1,19 @@
+/*
+ * uart.c
+ *
+ *  Created on: 17 sept. 2017
+ *      Author: Nicolas
+ */
+
+uint8_t uartData[100];
+
+void enableUartInterrupt(void)
+{
+	HAL_UART_Receive_IT(&huart1, &uartData[0], 1);
+}
+
+
+void UART_received(void)
+{
+	uartData[4]=0;
+}
