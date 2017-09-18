@@ -98,7 +98,7 @@ void flash_writeDisable(void)
 	flash_CE_high();
 }
 
-void flash_erase4KB(uint32_t address)
+void flash_erase4kB(uint32_t address)
 {
 	uint8_t dataSend;
 	uint8_t addressTable[3];
@@ -146,7 +146,7 @@ void flash_pageProgram(uint32_t address, uint32_t size, uint8_t* flashData)
 	flash_CE_low();
 	HAL_SPI_Transmit(&hspi1, &dataSend, 1, flash_timeout);
 	HAL_SPI_Transmit(&hspi1, &addressTable[0], 3, flash_timeout);
-	if(size < 256)
+	if(size <= 256)
 	{
 		for(i=0 ; i< size ; i++)
 			HAL_SPI_Transmit(&hspi1, &flashData[i], 1, flash_timeout);

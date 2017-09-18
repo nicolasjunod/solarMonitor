@@ -91,7 +91,7 @@ int main(void)
 
   /* USER CODE BEGIN 1 */
 
-	adcPeriod = 1; // configure the period in seconds
+	adcPeriod = 3; // configure the period in seconds
 
   /* USER CODE END 1 */
 
@@ -113,36 +113,17 @@ int main(void)
   MX_SPI1_Init();
 
   /* USER CODE BEGIN 2 */
-  initTables();
+//  initTables();
   flash_initGPIO();
   flash_readID(&flashID[0]);
  // flash_readStatus(&flashID[0]);
 //  flash_readConfig(&flashID[0]);
 
-//  flash_writeEnable();
-//  flash_chipErase();
-/*
-  result=0;
-  for(i=0 ; i<100 ; i++)
-  {
-	  dataToWrite[i]=100+i;
-	  flash_readMemory(0x10000+i, 1, &flashData[i]);
-  }
-
   flash_globalBlockProtectionUnlock();
-
- // flash_writeEnable();
-//  flash_erase4KB(0x10000);
-
-  flash_writeEnable();
-  flash_pageProgram(0x00000, 100, &dataToWrite[0]);
-
-  flash_readMemory(0x00000, 100, &flashData[0]);*/
-
 
   enableUartInterrupt();
 
-//  HAL_LPTIM_Counter_Start_IT(&hlptim1, adcPeriod*32768);
+  HAL_LPTIM_Counter_Start_IT(&hlptim1, adcPeriod*2048);
 
   /* USER CODE END 2 */
 
@@ -297,7 +278,7 @@ static void MX_LPTIM1_Init(void)
 
   hlptim1.Instance = LPTIM1;
   hlptim1.Init.Clock.Source = LPTIM_CLOCKSOURCE_APBCLOCK_LPOSC;
-  hlptim1.Init.Clock.Prescaler = LPTIM_PRESCALER_DIV1;
+  hlptim1.Init.Clock.Prescaler = LPTIM_PRESCALER_DIV16;
   hlptim1.Init.Trigger.Source = LPTIM_TRIGSOURCE_SOFTWARE;
   hlptim1.Init.OutputPolarity = LPTIM_OUTPUTPOLARITY_HIGH;
   hlptim1.Init.UpdateMode = LPTIM_UPDATE_IMMEDIATE;
@@ -376,7 +357,7 @@ static void MX_SPI1_Init(void)
   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi1.Init.NSS = SPI_NSS_SOFT;
-  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_32;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;

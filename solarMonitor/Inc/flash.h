@@ -17,6 +17,9 @@
 #define flash_WP_Port	GPIOC
 #define flash_HOLD_Port	GPIOC
 
+#define COUNTER_ADDRESS_ORIGIN	0x010000
+#define DATA_ADDRESS_ORIGIN		0x080000
+
 void flash_CE_low(void);
 void flash_CE_high(void);
 void flash_readID(uint8_t* flashID);
@@ -29,7 +32,7 @@ void flash_readMemory(uint32_t address, uint32_t size, uint8_t* flashData);
 void flash_writeEnable(void);
 void flash_writeDisable(void);
 
-void flash_erase4KB(uint32_t address);
+void flash_erase4kB(uint32_t address);
 void flash_chipErase(void);
 
 void flash_pageProgram(uint32_t address, uint32_t size, uint8_t* flashData);

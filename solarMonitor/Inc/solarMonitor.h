@@ -11,6 +11,9 @@
 #define nbData 1024
 
 void takeMes(void);
-void initTables(void);
+//void initTables(void);
+void downloadData(void);
+void initFlashCounter(void);
+void testFlash(void);
 
 #endif /* SOLARMONITOR_H_ */
